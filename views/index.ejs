@@ -1,0 +1,35 @@
+<!--views/index.ejs-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyBlog</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <div class="head">
+    <h1>My Blog</h1>
+    <form action="/search" method="GET">
+      キーワード検索<input type="text" name="keyword">
+      <button type="submit">検索</button>
+    </form>
+    </div>
+
+    <div class="add">
+      <h3>新しいブログを追加</h3>
+      <form action="/" method="POST">
+      タイトル:<input type="text" name="title" required /><br />
+      投稿日:<input type="date" name="date" required /><br />
+      内容:<input type="text" name="detail" required /><br />
+      <button type="submit">追加</button>
+    </form>
+    </div>
+
+    <% for(let i = 0; i < contents.length; i++) { %>
+    <div class="card">
+      <h3><%= contents[i].title %></h3>
+      <p>投稿日：<%= contents[i].date.toISOString().slice(0, 10) %></p>
+      <p><%= contents[i].detail %></p>
+    </div>
+    <% } %>
+  </body>
+</html>
